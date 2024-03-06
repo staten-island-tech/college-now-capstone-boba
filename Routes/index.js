@@ -9,10 +9,10 @@ router.patch("/menu/update/:id", controller.updateMenuItem);
 router.delete("/menu/delete/:id", controller.deleteMenuItem);
 
 //user
-router.get("/order/:id", controller.getUser);
-router.post("/order/add", controller.createUser);
-router.patch("/order/update/:id", controller.updateUser);
-router.delete("/order/delete/:id", controller.deleteUser);
+router.get("/user/:id", controller.getUser);
+router.post("/user/add", controller.createUser);
+router.patch("/user/update/:id", controller.updateUser);
+router.delete("/user/delete/:id", controller.deleteUser);
 
 //order
 router.get("/order/:id", controller.getOrder);
