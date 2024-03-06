@@ -9,7 +9,7 @@ exports.createMenuItem = async (req, res) => {
     await item.save();
     res.json(item);
   } catch (error) {
-    res.stats(500).json(error);
+    res.status(500).json(error);
   }
 };
 
@@ -51,9 +51,9 @@ exports.createUser = async (req, res) => {
   try {
     const user = new userSchema(req.body);
     await user.save();
-    res.json(item);
+    res.json(user);
   } catch (error) {
-    res.stats(500).json(error);
+    res.status(500).json(error);
   }
 };
 
