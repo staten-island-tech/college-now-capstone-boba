@@ -1,6 +1,7 @@
 const express = require("express");
 const router = new express.Router();
 const controller = require("../Controllers/controllers");
+const authController = require("../Controllers/authController");
 
 //menu
 router.get("/menu/fetch", controller.getMenuItem);
@@ -10,7 +11,8 @@ router.delete("/menu/delete/:id", controller.deleteMenuItem);
 
 //user
 router.get("/user/:id", controller.getUser);
-router.post("/user/add", controller.createUser);
+//router.post("/user/add", controller.createUser);
+router.post("/user/register", authController.register);
 router.patch("/user/update/:id", controller.updateUser);
 router.delete("/user/delete/:id", controller.deleteUser);
 
