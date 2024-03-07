@@ -18,8 +18,9 @@ exports.register = async function (req, res) {
     let newUser = new User({
       username: req.body.username,
       password: req.body.password,
+      zipcode: req.body.zipcode,
     });
-    //const token = await generateToken(newUser);
+    const token = await generateToken(newUser);
     await newUser.save();
     res.json({
       success: true,
