@@ -9,7 +9,7 @@ exports.createMenuItem = async (req, res) => {
     await item.save();
     res.json(item);
   } catch (error) {
-    res.status(500).json(error);
+    res.stats(500).json(error);
   }
 };
 
