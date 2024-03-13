@@ -19,7 +19,7 @@ exports.register = async function (req, res) {
       username: req.body.username,
       password: req.body.password,
     });
-    //const token = await generateToken(newUser);
+    const token = await generateToken(newUser);
     await newUser.save();
     res.json({
       success: true,
