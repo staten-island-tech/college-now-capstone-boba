@@ -10,7 +10,7 @@ router.patch("/menu/update/:id", controller.updateMenuItem);
 router.delete("/menu/delete/:id", controller.deleteMenuItem);
 
 //user
-router.get("/user/:id", authController.authCheck, authController.login);
+router.get("/user/:id", controller.getUser);
 //router.post("/user/add", controller.createUser);
 router.post("/user/register", authController.register);
 router.patch("/user/update/:id", controller.updateUser);

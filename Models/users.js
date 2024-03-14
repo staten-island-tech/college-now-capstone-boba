@@ -30,9 +30,6 @@ const userSchema = new mongoose.Schema({
       },
     },
   ],
-  profilePicture: {
-    type: String,
-  },
 });
 
 userSchema.pre("save", async function (next) {

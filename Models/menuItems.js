@@ -49,9 +49,6 @@ const menuItem = new mongoose.Schema({
     trim: true,
     required: "Please provide a list of allergens",
   },
-  itemPicture: {
-    type: String,
-  },
 });
 
 menuItem.pre("save", function (next) {
