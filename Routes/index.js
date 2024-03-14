@@ -4,7 +4,7 @@ const controller = require("../Controllers/controllers");
 const authController = require("../Controllers/authController");
 
 //menu
-router.get("/menu/fetch", controller.getMenuItem);
+router.get("/menu/fetch/:id", controller.getMenuItem);
 router.post("/menu/add", controller.createMenuItem);
 router.patch("/menu/update/:id", controller.updateMenuItem);
 router.delete("/menu/delete/:id", controller.deleteMenuItem);
