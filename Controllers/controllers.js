@@ -39,7 +39,7 @@ exports.deleteMenuItem = async (req, res) => {
 
 exports.getMenuItem = async (req, res) => {
   try {
-    const menu = await menuItem.find();
+    const menu = await menuItem.findOne();
     res.json(menu);
   } catch (error) {
     console.log(error);
@@ -126,7 +126,7 @@ exports.deleteOrder = async (req, res) => {
 
 exports.getOrder = async (req, res) => {
   try {
-    const order = await orderSchema.find();
+    const order = await orderSchema.findOne();
     res.json(order);
   } catch (error) {
     console.log(error);
