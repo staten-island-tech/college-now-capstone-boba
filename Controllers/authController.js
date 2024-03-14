@@ -71,3 +71,12 @@ exports.authCheck = async (req, res, next) => {
     res.status(401).send({ error: "Please authenticate." });
   }
 };
+
+exports.protected = async (req, res) => {
+  let user = req.user;
+  try {
+    res.json({ user });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
