@@ -106,7 +106,7 @@ exports.deleteUser = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await userSchema.find();
+    const user = await userSchema.find(req.__id);
     res.json(user);
   } catch (error) {
     console.log(error);
