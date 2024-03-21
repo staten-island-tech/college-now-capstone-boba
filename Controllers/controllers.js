@@ -83,7 +83,7 @@ exports.deleteUser = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await userSchema.find(req.__id);
+    const user = await userSchema.find();
     res.json(user);
   } catch (error) {
     console.log(error);
