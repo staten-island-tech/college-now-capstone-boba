@@ -8,8 +8,10 @@ export const userStore = defineStore('user', () => {
 
   const $signup = async (user, password, zipcode) => {
     try {
+      console.log(user, password, zipcode)
       const response = await fetch(`http://localhost:3000/user/register`, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           username: user,
           password: password,
@@ -19,7 +21,7 @@ export const userStore = defineStore('user', () => {
         .then((res) => res.json())
         .then(async (data) => {
           access_token.value = data.token
-          console.log(data.token)
+          console.log(data)
         })
       router.push('/home')
     } catch (error) {
@@ -31,6 +33,7 @@ export const userStore = defineStore('user', () => {
     try {
       const response = await fetch(`http://localhost:3000/user/login`, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           username: user,
           password: password
