@@ -49,5 +49,25 @@ export const userStore = defineStore('user', () => {
       console.log(error)
     }
   }
-  return { username, access_token, $signup, $userLogin }
+
+  const $menuList = async (item) => {
+    try {
+      const response = await fetch(`http://localhost:3000/menu/fetch/:id`, {
+        method: 'GET',
+        body: JSON.stringify({
+          item: item
+        })
+      })
+        .then((res) => res.json())
+        .then(async (data) => {
+          access_token.value = data.token
+          console.log(data.token)
+        })
+      router.push('/home')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  return { username, access_token, $signup, $userLogin, $menuList }
 })
