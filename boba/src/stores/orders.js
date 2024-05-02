@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
 import { userStore } from './user.js'
 import router from '@/router'
+import { ref } from 'vue'
 
-const userStore = userStore()
+const userSt = userStore()
 
 export const orderStore = defineStore('order', () => {
   const orderItems = ref([])
@@ -10,13 +11,13 @@ export const orderStore = defineStore('order', () => {
 
   const $createOrder = async function () {
     try {
-      console.log(userStore.access_token)
+      console.log(userSt.access_token)
       const response = await fetch(`http://localhost:3000/order/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          user: userStore.username,
-          userToken: userStore.access_token,
+          user: userSt.username,
+          userToken: userSt.access_token,
           currentOrder: true,
           menuItems: orderItems.value,
           cost: total.value

@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 export const menuStore = defineStore('menu', () => {
   const menuItems = ref([])
 
   const $fetchMenu = async function () {
     try {
-      console.log(userStore.access_token)
       const response = await fetch(`http://localhost:3000/menu/fetch`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
@@ -14,7 +14,6 @@ export const menuStore = defineStore('menu', () => {
         .then(async (data) => {
           menuItems.value = data
         })
-      //router.push('')
     } catch (error) {
       console.log(error)
     }
