@@ -37,6 +37,15 @@ exports.deleteMenuItem = async (req, res) => {
   }
 };
 
+exports.getMenu = async(req, res) => {
+  try {
+    const menu = await menuItem.find()
+    res.json(menu)
+  } catch(error) {
+    console.log(error)
+  }
+}
+
 exports.getMenuItem = async (req, res) => {
   try {
     const menu = await menuItem.findById(req.parans.id);

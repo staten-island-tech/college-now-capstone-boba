@@ -7,6 +7,10 @@ const orderSchema = new mongoose.Schema({
     trim: true,
     required: "please provide a name",
   },
+  userToken: {
+    type: String,
+    required: "add a token"
+  },
   currentOrder: {
     type: Boolean,
     trim: true,
