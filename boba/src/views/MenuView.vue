@@ -15,7 +15,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="gotData">
+<div class="container">
+  <div v-if="gotData" class="card-container">
     <MenuItemCard
       v-for="item in menuSt.menuItems"
       :key="item"
@@ -32,4 +33,25 @@ onMounted(() => {
       @click="orderSt.orderItems.push(item)"
     />
   </div>
+</div>
 </template>
+
+<style>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.card {
+  margin: 0 10px;
+  width: 300px;
+}
+
+</style>
