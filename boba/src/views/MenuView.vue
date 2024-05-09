@@ -15,6 +15,7 @@ onMounted(() => {
 </script>
 
 <template>
+<header>Cart</header>
 <div class="container">
   <div v-if="gotData" class="card-container">
     <MenuItemCard
@@ -37,6 +38,13 @@ onMounted(() => {
 </template>
 
 <style>
+header {
+  display: flex;
+  justify-content: left;
+  padding: 20px;
+  margin-right: 10px;
+}
+
 .container {
   display: flex;
   justify-content: center;

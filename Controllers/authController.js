@@ -12,7 +12,7 @@ const generateToken = async function (user) {
 
 exports.register = async function (req, res) {
   if (!req.body.username || !req.body.password) {
-    res.json({ success: false, msg: "Please pas username and password" });
+    res.json({ success: false, msg: "Please pass username and password" });
   } else {
     console.log(req.body.password);
     let newUser = new User({
