@@ -15,26 +15,25 @@ onMounted(() => {
 </script>
 
 <template>
-<header>Cart</header>
-<div class="container">
-  <div v-if="gotData" class="card-container">
-    <MenuItemCard
-      v-for="item in menuSt.menuItems"
-      :key="item"
-      :name="item.name"
-      :description="item.description"
-      :tags="item.tags"
-      :cost="item.cost"
-      :calories="item.calories"
-      :sizes="item.sizes"
-      :sugar="item.sugarPercentage"
-      :ice="item.icePercentage"
-      :ingredients="item.ingredients"
-      :allergens="item.allergens"
-      @click="orderSt.orderItems.push(item)"
-    />
+  <div class="container">
+    <div v-if="gotData" class="card-container">
+      <MenuItemCard
+        v-for="item in menuSt.menuItems"
+        :key="item"
+        :name="item.name"
+        :description="item.description"
+        :tags="item.tags"
+        :cost="item.cost"
+        :calories="item.calories"
+        :sizes="item.sizes"
+        :sugar="item.sugarPercentage"
+        :ice="item.icePercentage"
+        :ingredients="item.ingredients"
+        :allergens="item.allergens"
+        @click="orderSt.orderItems.push(item)"
+      />
+    </div>
   </div>
-</div>
 </template>
 
 <style>
@@ -61,5 +60,4 @@ header {
   margin: 0 10px;
   width: 300px;
 }
-
 </style>
