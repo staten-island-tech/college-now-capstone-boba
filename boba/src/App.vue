@@ -1,81 +1,74 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <header>
-    <h1>Welcome to Yum Boba!</h1>
-
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Register</RouterLink>
-        <RouterLink to="/Menu">Menu</RouterLink>
-      </nav>
-    </div>
-  </header>
-  <RouterView />
+  <div class="container">
+    <nav>
+      <RouterLink to="/">Register</RouterLink>
+      <RouterLink to="/menu">Menu</RouterLink>
+    </nav>
+    <header>
+      <h1>Welcome to Yum Boba!</h1>
+    </header>
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
-
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
 nav {
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+  background-color: gray;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
 }
 
 nav a {
+  color: #f2f2f2;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
   display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
 }
 
-nav a:first-of-type {
-  border: 0;
+nav a.router-link-exact-active {
+  color: pink;
+}
+
+nav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+header {
+  color: white;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
 }
 
 @media (min-width: 1024px) {
   header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    padding-right: 40px;
   }
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.container {
+  display: flex;
+  flex-direction: column;  
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 </style>
