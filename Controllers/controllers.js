@@ -37,14 +37,14 @@ exports.deleteMenuItem = async (req, res) => {
   }
 };
 
-exports.getMenu = async(req, res) => {
+exports.getMenu = async (req, res) => {
   try {
-    const menu = await menuItem.find()
-    res.json(menu)
-  } catch(error) {
-    console.log(error)
+    const menu = await menuItem.find();
+    res.json(menu);
+  } catch (error) {
+    console.log(error);
   }
-}
+};
 
 exports.getMenuItem = async (req, res) => {
   try {
@@ -101,11 +101,18 @@ exports.getUser = async (req, res) => {
 //orders
 exports.createOrder = async (req, res) => {
   try {
-    const order = new orderSchema(req.body);
+    const order = new orderSchema({
+      id: new mongoose.Types.ObjectId(),
+      user: req.body.user,
+      userToken: req.body.userToken,
+      currentOrder: req.body.currentOrder,
+      menuItems: req.body.menuItems,
+      cost: req.body.cost,
+    });
     await order.save();
     res.json(order);
   } catch (error) {
-    res.stats(500).json(error);
+    res.status(500).json(error);
   }
 };
 
@@ -133,9 +140,9 @@ exports.deleteOrder = async (req, res) => {
   }
 };
 
-exports.getOrder = async (req, res) => {
+exports.getOrder = async (res) => {
   try {
-    const order = await orderSchema.findById(req.params.id);
+    const order = await orderSchema.find({});
     res.json(order);
   } catch (error) {
     console.log(error);

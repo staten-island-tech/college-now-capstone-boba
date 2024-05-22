@@ -10,7 +10,9 @@ import HelloWorld from './components/HelloWorld.vue'
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Register</RouterLink>
+        <RouterLink to="/login">login</RouterLink>
         <RouterLink to="/Menu">Menu</RouterLink>
+        <RouterLink to="/cart">cart</RouterLink>
       </nav>
     </div>
   </header>
@@ -18,11 +20,11 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style scoped>
-
 header {
   line-height: 1.5;
   max-height: 100vh;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
+    Verdana, sans-serif;
 }
 
 nav {
@@ -30,8 +32,8 @@ nav {
   font-size: 12px;
   text-align: center;
   margin-top: 2rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
+    Verdana, sans-serif;
 }
 
 nav a.router-link-exact-active {
@@ -77,5 +79,4 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
-
 </style>

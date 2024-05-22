@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const slugify = require("slugify");
 
 const orderSchema = new mongoose.Schema({
+  id: { type: mongoose.Schema.Types.ObjectId, required: true },
   user: {
     type: String,
     trim: true,
