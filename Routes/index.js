@@ -23,7 +23,7 @@ router.patch("/user/update/:id", controller.updateUser);
 router.delete("/user/delete/:id", controller.deleteUser);
 
 //order
-router.get("/order/:id", controller.getOrder);
+router.get("/order/get", controller.getOrder);
 router.post("/order/add", controller.createOrder);
 router.patch("/order/update/:id", controller.updateOrder);
 router.delete("/order/delete/:id", controller.deleteOrder);

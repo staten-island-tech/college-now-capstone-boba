@@ -7,6 +7,6 @@ let userSt = userStore()
 
 <template>
   <div>
-    <button>test button woo</button>
+    <button @click="orderSt.$createOrder()">test button woo</button>
   </div>
 </template>

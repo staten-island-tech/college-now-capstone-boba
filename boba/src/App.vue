@@ -3,34 +3,34 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <div class="container">
-    <nav>
-      <RouterLink to="/">Register</RouterLink>
-      <RouterLink to="/menu">Menu</RouterLink>
-    </nav>
-    <header>
-      <h1>Welcome to Yum Boba!</h1>
-    </header>
-    <RouterView />
-  </div>
+  <header>
+    <h1>Welcome to Yum Boba!</h1>
+
+    <div class="wrapper">
+      <nav>
+        <RouterLink to="/">Register</RouterLink>
+        <RouterLink to="/Menu">Menu</RouterLink>
+      </nav>
+    </div>
+  </header>
+  <RouterView />
 </template>
 
 <style scoped>
-nav {
-  width: 100%;
-  background-color: gray;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
+
+header {
+  line-height: 1.5;
+  max-height: 100vh;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-nav a {
-  color: #f2f2f2;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  display: inline-block;
+nav {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 2rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
 }
 
 nav a.router-link-exact-active {
@@ -70,5 +70,4 @@ h1 {
   height: 100%;
   width: 100%;
 }
-
 </style>

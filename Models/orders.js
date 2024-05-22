@@ -9,7 +9,7 @@ const orderSchema = new mongoose.Schema({
   },
   userToken: {
     type: String,
-    required: "add a token"
+    required: "add a token",
   },
   currentOrder: {
     type: Boolean,
