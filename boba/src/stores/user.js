@@ -21,7 +21,7 @@ export const userStore = defineStore('user', () => {
         .then((res) => res.json())
         .then(async (data) => {
           access_token.value = data.token
-          console.log(data)
+          console.log(access_token.value)
         })
       router.push('/home')
     } catch (error) {
@@ -42,9 +42,10 @@ export const userStore = defineStore('user', () => {
         .then((res) => res.json())
         .then(async (data) => {
           access_token.value = data.token
-          console.log(data.token)
+          username.value = user
+          console.log(access_token.value)
         })
-      router.push('/home')
+      router.push('/menu')
     } catch (error) {
       console.log(error)
     }

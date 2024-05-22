@@ -9,27 +9,9 @@ let password = ref()
 <template>
   <div>
     <label for="name">Email:</label>
-    <input
-      type="text"
-      id="name"
-      name="name"
-      required
-      minlength="4"
-      maxlength="8"
-      size="10"
-      v-model="username"
-    />
+    <input type="text" id="name" name="name" required minlength="4" size="10" v-model="username" />
     <label for="name">Password:</label>
-    <input
-      type="text"
-      id="name"
-      name="name"
-      required
-      minlength="4"
-      maxlength="8"
-      size="10"
-      v-model="password"
-    />
+    <input type="text" id="name" name="name" required minlength="4" size="10" v-model="password" />
 
     <button @click="userStore().$userLogin(username, password)">Submit:</button>
   </div>

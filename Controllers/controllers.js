@@ -101,14 +101,7 @@ exports.getUser = async (req, res) => {
 //orders
 exports.createOrder = async (req, res) => {
   try {
-    const order = new orderSchema({
-      id: new mongoose.Types.ObjectId(),
-      user: req.body.user,
-      userToken: req.body.userToken,
-      currentOrder: req.body.currentOrder,
-      menuItems: req.body.menuItems,
-      cost: req.body.cost,
-    });
+    const order = new orderSchema(req.body);
     await order.save();
     res.json(order);
   } catch (error) {

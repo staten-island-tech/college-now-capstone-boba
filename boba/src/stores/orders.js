@@ -26,7 +26,6 @@ export const orderStore = defineStore('order', () => {
       })
         .then((res) => res.json())
         .then(async (data) => {
-          access_token.value = data.token
           console.log(data)
         })
       //router.push('')
