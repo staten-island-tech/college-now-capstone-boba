@@ -46,6 +46,8 @@ function addToCart(data) {
       </div>
     </div>
 
+    <div class="separator1"></div>
+
     <div class="options">
       <div v-if="sizes && sizes.length" class="size-container">
         <h5>Sizes:</h5>
@@ -67,7 +69,7 @@ function addToCart(data) {
       </div>
     </div>
 
-    <div>
+    <div class="add-to-cart">
       <button
         @click="
           addToCart({
@@ -79,10 +81,7 @@ function addToCart(data) {
             ice: tempIce,
             allergens: allergens
           })
-        "
-      >
-        Add to Cart
-      </button>
+          ">Add to Cart</button>
     </div>
   </div>
 </template>
@@ -123,12 +122,21 @@ p {
 }
 
 .buttons {
-  display: flex;
-  flex-direction: row;
-  height: 2rem;
+  padding: 7px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  border: 2px solid pink;
+  border-radius: 10px;
   color: black;
-  width: 25%;
-  margin: 5px;
+  background-color: pink;
+  border-color:white;
+  font-weight: bold;
+  text-align: center;
+}
+
+button:hover {
+  color: gray;
 }
 
 .options {
@@ -137,4 +145,30 @@ p {
   flex-direction: row;
   justify-content: space-between;
 }
+
+.separator1 {
+  background-color: gray;
+  width: 100%; 
+  height: 3px; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
+.add-to-cart {
+  margin-top: auto;
+  align-self: flex-start; 
+  padding: 7px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  border: 2px solid pink;
+  border-radius: 10px;
+  color: black;
+  background-color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
 </style>
