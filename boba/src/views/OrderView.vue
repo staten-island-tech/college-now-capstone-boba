@@ -12,13 +12,18 @@ onMounted(() => {
 
 <template>
   <div v-if="dataGot" class="hi">
-    <h1>Orders:</h1>
-    <div v-for="order in orderSt.orders" :key="order._id" class="card">
-      <h3>insert order name here idk</h3>
-      <div v-for="item in order.menuItems" :key="item">{{ item.name }} - ${{ item.cost }}</div>
-      <div>total: ${{ order.cost }}</div>
-      <button @click="orderSt.$deleteOrder(order._id)">delete order!</button>
-      <button @click="orderSt.$updateOrder(order._id)">update order! (with cart)</button>
+    <div v-if="orderSt.orders.length > 0">
+      <h1>Orders:</h1>
+      <div v-for="order in orderSt.orders" :key="order._id" class="card">
+        <h3>insert order name here idk</h3>
+        <div v-for="item in order.menuItems" :key="item">{{ item.name }} - ${{ item.cost }}</div>
+        <div>total: ${{ order.cost }}</div>
+        <button @click="orderSt.$deleteOrder(order._id)">delete order!</button>
+        <button @click="orderSt.$updateOrder(order._id)">update order! (with cart)</button>
+      </div>
+    </div>
+    <div v-if="orderSt.orders.length == 0">
+      You don't have any orders... place one to see it here!
     </div>
   </div>
 </template>
