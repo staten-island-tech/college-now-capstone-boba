@@ -1,6 +1,21 @@
 <script setup>
 import { orderStore } from '@/stores/orders'
-import { ref } from 'vue'
+import { ref, onMounted} from 'vue'
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
+
+const showContent = ref(false);
+let tl;
+
+onMounted(() => {
+  gsap.fromTo(".card", { opacity: 0, x: -200 }, { 
+    opacity: 1, x: 20, duration: 1, stagger: 0.2, onComplete: () => {
+      showContent.value = true;
+    } 
+  });
+});
 
 let store = orderStore()
 
@@ -17,17 +32,19 @@ defineProps({
   allergens: Array
 })
 
-const tempIce = ref('Regular')
-const tempSugar = ref('100%')
-const tempSize = ref('Medium')
+const tempIce = ref()
+const tempSugar = ref()
+const tempSize = ref()
 
 function addToCart(data) {
+  console.log(tempIce, tempSugar, tempSize)
   store.orderItems.push(data)
   console.log(data)
 }
 </script>
 
 <template>
+  <div class="container">
   <div class="card">
     <h3>{{ name }}</h3>
     <p>{{ description }}</p>
@@ -68,9 +85,8 @@ function addToCart(data) {
       </div>
     </div>
 
-    <div class="button-container">
+    <div class="add-to-cart">
       <button
-        class="add-to-cart"
         @click="
           addToCart({
             name: name,
@@ -81,12 +97,10 @@ function addToCart(data) {
             ice: tempIce,
             allergens: allergens
           })
-        "
-      >
-        Add to Cart
-      </button>
+          ">Add to Cart</button>
     </div>
   </div>
+</div>
 </template>
 
 <style scoped>
@@ -133,7 +147,7 @@ p {
   border-radius: 10px;
   color: black;
   background-color: pink;
-  border-color: white;
+  border-color:white;
   font-weight: bold;
   text-align: center;
 }
@@ -151,8 +165,8 @@ button:hover {
 
 .separator1 {
   background-color: gray;
-  width: 100%;
-  height: 3px;
+  width: 100%; 
+  height: 3px; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -161,7 +175,7 @@ button:hover {
 
 .add-to-cart {
   margin-top: auto;
-  align-self: flex-start;
+  align-self: flex-start; 
   padding: 7px;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -173,9 +187,5 @@ button:hover {
   text-align: center;
 }
 
-.button-container {
-  justify-content: center;
-  display: flex;
-  flex: wrap;
-}
 </style>
+
