@@ -77,14 +77,14 @@ export const orderStore = defineStore('order', () => {
     }
   }
 
-  const $updateOrder = async function (id) {
+  const $updateOrder = async function (id, cost) {
     try {
       console.log(userSt.access_token)
       console.log(id)
       const response = await fetch(`http://localhost:3000/order/update`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: id, menuItems: orderItems.value, cost: total.value })
+        body: JSON.stringify({ id: id, menuItems: orderItems.value, cost: cost })
       })
         .then((res) => res.json())
         .then(async (data) => {

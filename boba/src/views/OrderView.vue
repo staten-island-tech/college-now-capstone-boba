@@ -19,7 +19,9 @@ onMounted(() => {
         <div v-for="item in order.menuItems" :key="item">{{ item.name }} - ${{ item.cost }}</div>
         <div>total: ${{ order.cost }}</div>
         <button @click="orderSt.$deleteOrder(order._id)">delete order!</button>
-        <button @click="orderSt.$updateOrder(order._id)">update order! (with cart)</button>
+        <button @click="orderSt.$updateOrder(order._id, order.cost)">
+          update order! (with cart)
+        </button>
       </div>
     </div>
     <div v-if="orderSt.orders.length == 0">
