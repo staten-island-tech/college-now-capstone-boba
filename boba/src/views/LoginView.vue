@@ -8,7 +8,7 @@ let incompleteField = ref(false)
 
 function login() {
   if (username.value && password.value) {
-    userStore().$userLogin(username, password)
+    userStore().$userLogin(username.value, password.value)
   } else {
     incompleteField.value = true
   }
