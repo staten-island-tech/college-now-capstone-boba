@@ -5,6 +5,8 @@ import router from '@/router'
 export const userStore = defineStore('user', () => {
   const username = ref()
   const access_token = ref()
+  const loginError = ref(false)
+  const registerError = ref(false)
 
   const $signup = async (user, password, zipcode) => {
     try {
@@ -23,9 +25,16 @@ export const userStore = defineStore('user', () => {
           access_token.value = data.token
           console.log(access_token.value)
         })
+      if (response.status(400)) {
+        registerError.value = true
+        //throw new Error(error)
+        return
+      }
       router.push('/home')
     } catch (error) {
       console.log(error)
+      registerError.value = true
+      throw new Error(error)
     }
   }
 
@@ -47,8 +56,9 @@ export const userStore = defineStore('user', () => {
         })
       router.push('/menu')
     } catch (error) {
-      console.log(error)
+      loginError.value = true
+      throw new Error(error)
     }
   }
-  return { username, access_token, $signup, $userLogin }
+  return { username, access_token, loginError, $signup, $userLogin }
 })

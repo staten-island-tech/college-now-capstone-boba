@@ -22,6 +22,7 @@ function login() {
     <label for="name">Password:</label>
     <input type="text" id="name" name="name" required minlength="4" size="10" v-model="password" />
     <h3 v-if="incompleteField">Please make sure you filled out all fields!</h3>
+    <h3 v-if="userStore().loginError">Incorrect username or password!</h3>
     <button @click="login()">Submit:</button>
   </div>
 </template>

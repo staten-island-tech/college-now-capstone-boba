@@ -11,23 +11,27 @@ const generateToken = async function (user) {
 };
 
 exports.register = async function (req, res) {
-  if (!req.body.username || !req.body.password) {
-    res.json({ success: false, msg: "Please pass username and password" });
-  } else {
-    console.log(req.body.password);
-    let newUser = new User({
-      username: req.body.username,
-      password: req.body.password,
-      zipcode: req.body.zipcode,
-    });
-    const token = await generateToken(newUser);
-    await newUser.save();
-    res.json({
-      success: true,
-      msg: "successfully created user",
-      newUser,
-      token,
-    });
+  try {
+    if (!req.body.username || !req.body.password) {
+      res.json({ success: false, msg: "Please pass username and password" });
+    } else {
+      console.log(req.body.password);
+      let newUser = new User({
+        username: req.body.username,
+        password: req.body.password,
+        zipcode: req.body.zipcode,
+      });
+      const token = await generateToken(newUser);
+      await newUser.save();
+      res.json({
+        success: true,
+        msg: "successfully created user",
+        newUser,
+        token,
+      });
+    }
+  } catch (error) {
+    res.status(400).send({ error: "user not found" });
   }
 };
 
