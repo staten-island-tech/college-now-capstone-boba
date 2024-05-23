@@ -10,7 +10,7 @@ export const orderStore = defineStore('order', () => {
   const orderItems = ref([])
   const total = ref(0)
 
-  const $createOrder = async function () {
+  const $createOrder = async function (total) {
     try {
       console.log(userSt.access_token)
       const response = await fetch(`http://localhost:3000/order/add`, {
@@ -21,7 +21,7 @@ export const orderStore = defineStore('order', () => {
           userToken: userSt.access_token,
           currentOrder: true,
           menuItems: orderItems.value,
-          cost: total.value
+          cost: total
         })
       })
         .then((res) => res.json())
@@ -41,7 +41,7 @@ export const orderStore = defineStore('order', () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          userToken: userSt.access_token
+          user: userSt.username
         })
       })
         .then((res) => res.json())
@@ -58,13 +58,18 @@ export const orderStore = defineStore('order', () => {
   const $deleteOrder = async function (id) {
     try {
       console.log(userSt.access_token)
-      const response = await fetch(`http://localhost:3000/order/delete/${id}`, {
+      console.log(id)
+      const response = await fetch(`http://localhost:3000/order/delete`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: id
+        })
       })
         .then((res) => res.json())
         .then(async (data) => {
           console.log(data)
+          $getOrders()
         })
       //router.push('')
     } catch (error) {
@@ -75,14 +80,16 @@ export const orderStore = defineStore('order', () => {
   const $updateOrder = async function (id) {
     try {
       console.log(userSt.access_token)
-      const response = await fetch(`http://localhost:3000/order/update/${id}`, {
-        method: 'POST',
+      console.log(id)
+      const response = await fetch(`http://localhost:3000/order/update`, {
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ menuItems: orderItems.value, cost: total.value })
+        body: JSON.stringify({ id: id, menuItems: orderItems.value, cost: total.value })
       })
         .then((res) => res.json())
         .then(async (data) => {
           console.log(data)
+          $getOrders()
         })
       //router.push('')
     } catch (error) {
@@ -90,5 +97,5 @@ export const orderStore = defineStore('order', () => {
     }
   }
 
-  return { orderItems, $createOrder, $getOrders, $deleteOrder, $updateOrder }
+  return { orderItems, orders, $createOrder, $getOrders, $deleteOrder, $updateOrder }
 })

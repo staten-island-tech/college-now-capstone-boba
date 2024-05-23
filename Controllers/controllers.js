@@ -111,7 +111,7 @@ exports.createOrder = async (req, res) => {
 
 exports.updateOrder = async (req, res) => {
   try {
-    const order = await orderSchema.findById(req.params.id);
+    const order = await orderSchema.findById(req.body.id);
     const updates = Object.keys(req.body);
     updates.forEach((update) => (order[update] = req.body[update]));
     await order.save();
@@ -121,9 +121,9 @@ exports.updateOrder = async (req, res) => {
   }
 };
 
-exports.deleteOrder = async (res) => {
+exports.deleteOrder = async (req, res) => {
   try {
-    const order = await orderSchema.findByIdAndDelete(req.params.id);
+    const order = await orderSchema.findByIdAndDelete(req.body.id);
     if (!order) {
       res.status(404).send();
     }
@@ -135,9 +135,7 @@ exports.deleteOrder = async (res) => {
 
 exports.getOrder = async (req, res) => {
   try {
-    const order = await orderSchema
-      .find({ userToken: req.body.userToken })
-      .exec();
+    const order = await orderSchema.find({ user: req.body.user }).exec();
     res.json(order);
   } catch (error) {
     console.log(error);
