@@ -62,15 +62,12 @@ input {
 }
 
 button {
-  padding: 7px;
   margin-top: 8px;
   margin-bottom: 8px;
   font-size: 16px;
   margin-left: 10px;
-  border: 2px solid pink;
   border-radius: 10px;
   color: black;
-  background-color: white;
   font-weight: bold;
 }
 

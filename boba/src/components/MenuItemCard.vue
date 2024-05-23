@@ -178,7 +178,6 @@ button:hover {
 
 .options {
   display: flex;
-  flex: wrap;
   flex-direction: row;
   justify-content: space-between;
 }
