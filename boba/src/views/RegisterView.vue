@@ -99,6 +99,7 @@ function signup() {
           v-model="zipcode"
         />
         <h3 v-if="incompleteFields">Please make sure all fields are filled out.</h3>
+        <h3 v-if="userStore().registerError">Couldn't register! Try using a different username</h3>
         <button @click="signup">Submit</button>
       </div>
     </div>

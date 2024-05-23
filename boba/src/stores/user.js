@@ -25,11 +25,6 @@ export const userStore = defineStore('user', () => {
           access_token.value = data.token
           console.log(access_token.value)
         })
-      if (response.status(400)) {
-        registerError.value = true
-        //throw new Error(error)
-        return
-      }
       router.push('/home')
     } catch (error) {
       console.log(error)
@@ -60,5 +55,5 @@ export const userStore = defineStore('user', () => {
       throw new Error(error)
     }
   }
-  return { username, access_token, loginError, $signup, $userLogin }
+  return { username, access_token, loginError, registerError, $signup, $userLogin }
 })
