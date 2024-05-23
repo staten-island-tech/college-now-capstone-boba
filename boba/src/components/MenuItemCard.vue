@@ -17,12 +17,11 @@ defineProps({
   allergens: Array
 })
 
-const tempIce = ref()
-const tempSugar = ref()
-const tempSize = ref()
+const tempIce = ref('Regular')
+const tempSugar = ref('100%')
+const tempSize = ref('Medium')
 
 function addToCart(data) {
-  console.log(tempIce, tempSugar, tempSize)
   store.orderItems.push(data)
   console.log(data)
 }
@@ -69,8 +68,9 @@ function addToCart(data) {
       </div>
     </div>
 
-    <div class="add-to-cart">
+    <div class="button-container">
       <button
+        class="add-to-cart"
         @click="
           addToCart({
             name: name,
@@ -81,7 +81,10 @@ function addToCart(data) {
             ice: tempIce,
             allergens: allergens
           })
-          ">Add to Cart</button>
+        "
+      >
+        Add to Cart
+      </button>
     </div>
   </div>
 </template>
@@ -130,7 +133,7 @@ p {
   border-radius: 10px;
   color: black;
   background-color: pink;
-  border-color:white;
+  border-color: white;
   font-weight: bold;
   text-align: center;
 }
@@ -148,8 +151,8 @@ button:hover {
 
 .separator1 {
   background-color: gray;
-  width: 100%; 
-  height: 3px; 
+  width: 100%;
+  height: 3px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -158,7 +161,7 @@ button:hover {
 
 .add-to-cart {
   margin-top: auto;
-  align-self: flex-start; 
+  align-self: flex-start;
   padding: 7px;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -170,5 +173,9 @@ button:hover {
   text-align: center;
 }
 
+.button-container {
+  justify-content: center;
+  display: flex;
+  flex: wrap;
+}
 </style>
-

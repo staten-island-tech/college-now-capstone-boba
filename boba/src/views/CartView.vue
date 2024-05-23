@@ -5,20 +5,45 @@ import { userStore } from '@/stores/user'
 let orderSt = orderStore()
 let userSt = userStore()
 let cost = ref(0)
+let noItems = ref(false)
+let notLoggedIn = ref(false)
 
 onMounted(() => {
   orderSt.orderItems.forEach((item) => {
     cost.value += item.cost
   })
 })
+
+function placeOrder() {
+  console.log(userSt.access_token)
+  if (cost.value > 0) {
+    orderSt.$createOrder(cost)
+  } else if (userSt.access_token == undefined) {
+    notLoggedIn.value = true
+  } else {
+    noItems.value = true
+  }
+}
 </script>
 
 <template>
   <div>
-    <h1>Items:</h1>
-    <div v-for="item in orderSt.orderItems" :key="item">{{ item.name }} - ${{ item.cost }}</div>
-    <h4>Total: ${{ cost }}</h4>
-    <button @click="orderSt.$createOrder(cost)">Place your order here</button>
+    <div v-if="noItems"></div>
+    <div v-if="!noItems">
+      <h1>Items:</h1>
+      <div class="container">
+        <div v-for="item in orderSt.orderItems" :key="item" class="card">
+          {{ item.name }} - ${{ item.cost }}
+          <h4>Size: {{ item.size }}</h4>
+          <h4>Sugar: {{ item.sugar }}</h4>
+          <h4>Ice: {{ item.ice }}</h4>
+          <div>Allergens: {{ item.allergens.toString() }}</div>
+        </div>
+      </div>
+      <h4>Total: ${{ cost }}</h4>
+      <button @click="orderSt.$createOrder(cost)">Place your order here</button>
+    </div>
+    <div v-if="notLoggedIn">Please login or register before you order!</div>
   </div>
 </template>
 
@@ -28,4 +53,14 @@ h1 {
   font-size: 28px;
 }
 
+.container {
+  display: flex;
+  flex: wrap;
+  flex-direction: row;
+  width: 80vw;
+}
+
+.card {
+  margin: 10px;
+}
 </style>

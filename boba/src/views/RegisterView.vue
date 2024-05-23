@@ -1,84 +1,120 @@
 <script setup>
 import { userStore } from '../stores/user.js'
-import { ref, onMounted} from 'vue'
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ref, onMounted } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const showContent = ref(false);
-let tl;
+const showContent = ref(false)
+let tl
 
 onMounted(() => {
   const firstSection = {
-    firstWord: document.querySelector(".first-word"),
-    secondWord: document.querySelector(".second-word"),
-    words: document.querySelectorAll(".first-header"),
-    firstBG: document.querySelector(".first-bg"),
-    secondBG: document.querySelector(".second-bg"),
-  };
+    firstWord: document.querySelector('.first-word'),
+    secondWord: document.querySelector('.second-word'),
+    words: document.querySelectorAll('.first-header'),
+    firstBG: document.querySelector('.first-bg'),
+    secondBG: document.querySelector('.second-bg')
+  }
 
-  tl = gsap.timeline({ delay: 1 });
+  tl = gsap.timeline({ delay: 1 })
 
-  tl.to(".reveal-1", { width: "100%", duration: 0.2 });
-  tl.to(".reveal-2", { width: "100%", duration: 0.2 });
-  tl.to(".first-header", { opacity: 1, duration: 0.1 });
+  tl.to('.reveal-1', { width: '100%', duration: 0.2 })
+  tl.to('.reveal-2', { width: '100%', duration: 0.2 })
+  tl.to('.first-header', { opacity: 1, duration: 0.1 })
 
-  tl.to(".reveal-1", { width: "0%", duration: 0.2 });
-  tl.to(".reveal-2", { width: "0%", duration: 0.2 });
-  tl.to(".first", { opacity: 0, duration: 0.5, delay:0.7, onComplete: () => {
-    showContent.value = true;
-    }});
-});
-  
+  tl.to('.reveal-1', { width: '0%', duration: 0.2 })
+  tl.to('.reveal-2', { width: '0%', duration: 0.2 })
+  tl.to('.first', {
+    opacity: 0,
+    duration: 0.5,
+    delay: 0.7,
+    onComplete: () => {
+      showContent.value = true
+    }
+  })
+})
+
 const store = userStore()
-
+let incompleteFields = ref(false)
 let username = ref('')
 let password = ref('')
 let zipcode = ref('')
-const backgroundImageUrl = 'https://static.vecteezy.com/system/resources/previews/031/424/532/original/boba-tea-seamless-pattern-bubble-milk-tea-heart-valentine-scarf-isolated-repeat-wallpaper-tile-background-illustration-doodle-design-vector.jpg';
+const backgroundImageUrl =
+  'https://static.vecteezy.com/system/resources/previews/031/424/532/original/boba-tea-seamless-pattern-bubble-milk-tea-heart-valentine-scarf-isolated-repeat-wallpaper-tile-background-illustration-doodle-design-vector.jpg'
 
 function signup() {
-  store.$signup(username.value, password.value, zipcode.value)
+  if (username.value && password.value && zipcode.value) {
+    store.$signup(username.value, password.value, zipcode.value)
+  } else {
+    incompleteFields.value = true
+  }
 }
 </script>
 
-
 <template>
-  <section class="first">
-    <div class="first-bg">
-      <h1 class="first-header first-word">WELCOME TO</h1>
-      <div class="reveal-color reveal-1"></div>
-    </div>
-    <div class="second-bg">
-      <h1 class="first-header second-word">YUM BOBA</h1>
-      <div class="reveal-color reveal-2"></div>
-    </div>
-  </section>
+  <div>
+    <section class="first">
+      <div class="first-bg">
+        <h1 class="first-header first-word">WELCOME TO</h1>
+        <div class="reveal-color reveal-1"></div>
+      </div>
+      <div class="second-bg">
+        <h1 class="first-header second-word">YUM BOBA</h1>
+        <div class="reveal-color reveal-2"></div>
+      </div>
+    </section>
 
-  <div class="background">
-    <div class="container" :style="{ backgroundImage: `url(${backgroundImageUrl})` }">
-      <label for="name">Email:</label>
-      <input type="text" id="name" name="name" required minlength="4" size="10" v-model="username" />
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required minlength="4" size="10" v-model="password" />
-      <label for="zipcode">Zipcode:</label>
-      <input type="text" id="zipcode" name="zipcode" required minlength="4" size="10" v-model="zipcode" />
-
-      <button @click="signup">Submit</button>
+    <div class="background">
+      <div class="container" :style="{ backgroundImage: `url(${backgroundImageUrl})` }">
+        <label for="name">Email:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          minlength="4"
+          size="10"
+          v-model="username"
+        />
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          minlength="4"
+          size="10"
+          v-model="password"
+        />
+        <label for="zipcode">Zipcode:</label>
+        <input
+          type="text"
+          id="zipcode"
+          name="zipcode"
+          required
+          minlength="4"
+          size="10"
+          v-model="zipcode"
+        />
+        <h3 v-if="incompleteFields">Please make sure all fields are filled out.</h3>
+        <button @click="signup">Submit</button>
+      </div>
     </div>
   </div>
 </template>
 
-
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
-html, body, * {
+html,
+body,
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Lato";
+  font-family: 'Lato';
 }
 
 .first {
@@ -91,7 +127,7 @@ html, body, * {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; 
+  z-index: 1000;
   pointer-events: none;
   flex-direction: column;
 }
@@ -104,7 +140,7 @@ html, body, * {
   font-size: 50px;
   opacity: 0;
   flex-direction: column;
-  background-color:white;
+  background-color: white;
 }
 
 .first-bg,
@@ -146,20 +182,19 @@ label {
   border-radius: 20px;
   margin-top: 2px;
   margin-left: 4px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
+    Verdana, sans-serif;
 }
-
 
 input {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
   margin: 12px;
-  color:black;
+  color: black;
   border: 2px solid pink;
   border-radius: 10px;
   color: black;
-  
 }
 
 button {
@@ -179,7 +214,8 @@ button:hover {
   background-color: pink;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -198,7 +234,7 @@ html, body {
   justify-content: center;
 }
 
-.background{
+.background {
   color: brown;
 }
 </style>
