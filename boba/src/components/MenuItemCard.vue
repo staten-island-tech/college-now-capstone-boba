@@ -90,7 +90,7 @@ function addToCart(data) {
 .card {
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 16px;
+  padding: 10px;
   margin-bottom: 16px;
   margin-top: 16px;
   background-color: blanchedalmond;
@@ -122,8 +122,8 @@ p {
 }
 
 .buttons {
-  padding: 7px;
-  margin-top: 8px;
+  padding: 4px;
+  margin-left: 4px;
   margin-bottom: 8px;
   font-size: 16px;
   border: 2px solid pink;
@@ -165,7 +165,6 @@ button:hover {
   font-size: 16px;
   border: 2px solid pink;
   border-radius: 10px;
-  color: black;
   background-color: white;
   font-weight: bold;
   text-align: center;

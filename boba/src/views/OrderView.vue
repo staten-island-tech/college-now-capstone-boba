@@ -12,6 +12,7 @@ onMounted(() => {
 
 <template>
   <div v-if="dataGot" class="hi">
+    <h1>Orders:</h1>
     <div v-for="order in orderSt.orders" :key="order._id" class="card">
       <h3>insert order name here idk</h3>
       <div v-for="item in order.menuItems" :key="item">{{ item.name }} - ${{ item.cost }}</div>
@@ -31,5 +32,10 @@ onMounted(() => {
 
 .card {
   margin: 5px;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 28px;
 }
 </style>

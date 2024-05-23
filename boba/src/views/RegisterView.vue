@@ -1,13 +1,13 @@
 <script setup>
 import { userStore } from '../stores/user.js'
-import { ref, onMounted, onUnmounted} from 'vue'
+import { ref, onMounted} from 'vue'
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
 
 const showContent = ref(false);
-let tl = {};
+let tl;
 
 onMounted(() => {
   const firstSection = {
@@ -30,12 +30,7 @@ onMounted(() => {
     showContent.value = true;
     }});
 });
-
-onUnmounted(() => {
-  tl.revert();
-});
   
-
 const store = userStore()
 
 let username = ref('')
@@ -97,6 +92,7 @@ html, body, * {
   justify-content: center;
   align-items: center;
   z-index: 1000; 
+  pointer-events: none;
   flex-direction: column;
 }
 

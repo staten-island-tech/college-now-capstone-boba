@@ -15,8 +15,17 @@ onMounted(() => {
 
 <template>
   <div>
+    <h1>Items:</h1>
     <div v-for="item in orderSt.orderItems" :key="item">{{ item.name }} - ${{ item.cost }}</div>
-    <h4>total: ${{ cost }}</h4>
-    <button @click="orderSt.$createOrder(cost)">place your order here</button>
+    <h4>Total: ${{ cost }}</h4>
+    <button @click="orderSt.$createOrder(cost)">Place your order here</button>
   </div>
 </template>
+
+<style>
+h1 {
+  font-weight: bold;
+  font-size: 28px;
+}
+
+</style>
