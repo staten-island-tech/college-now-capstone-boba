@@ -19,7 +19,7 @@ function placeOrder() {
   if (userSt.access_token == undefined) {
     notLoggedIn.value = true
   } else if (cost.value > 0) {
-    orderSt.$createOrder(cost)
+    orderSt.$createOrder(cost.value)
   } else {
     noItems.value = true
   }

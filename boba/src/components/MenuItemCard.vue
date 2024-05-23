@@ -1,21 +1,29 @@
 <script setup>
 import { orderStore } from '@/stores/orders'
-import { ref, onMounted} from 'vue'
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ref, onMounted } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const showContent = ref(false);
-let tl;
+const showContent = ref(false)
+let tl
 
 onMounted(() => {
-  gsap.fromTo(".card", { opacity: 0, x: -200 }, { 
-    opacity: 1, x: 20, duration: 1, stagger: 0.2, onComplete: () => {
-      showContent.value = true;
-    } 
-  });
-});
+  gsap.fromTo(
+    '.card',
+    { opacity: 0, x: -200 },
+    {
+      opacity: 1,
+      x: 20,
+      duration: 1,
+      stagger: 0.2,
+      onComplete: () => {
+        showContent.value = true
+      }
+    }
+  )
+})
 
 let store = orderStore()
 
@@ -37,70 +45,81 @@ const tempSugar = ref()
 const tempSize = ref()
 
 function addToCart(data) {
-  console.log(tempIce, tempSugar, tempSize)
   store.orderItems.push(data)
   console.log(data)
+  console.log(store.orderItems)
 }
 </script>
 
 <template>
-    <div class="card-container">
-      <div class="card">
-    <h3>{{ name }}</h3>
-    <p>{{ description }}</p>
-    <div class="details">
-      <template v-if="tags && tags.length">
-        <h6 v-for="tag in tags" :key="'tag_' + tag">{{ tag }}</h6>
-      </template>
-      <div v-if="ingredients && ingredients.length">
-        <h3>Ingredients:</h3>
-        <h6>{{ ingredients.toString() }}</h6>
-      </div>
-      <div v-if="allergens && allergens.length">
-        <h3>Allergens:</h3>
-        <h6 v-for="allergen in allergens" :key="'allergen_' + allergen">{{ allergen }}</h6>
-      </div>
-    </div>
-
-    <div class="separator1"></div>
-
-    <div class="options">
-      <div v-if="sizes && sizes.length" class="size-container">
-        <h5>Sizes:</h5>
-        <div v-for="size in sizes" :key="'size_' + size" class="sizeButtons buttons">
-          <button @click="tempSize = size">{{ size }}</button>
+  <div class="card-container">
+    <div class="card">
+      <h3>{{ name }}</h3>
+      <p>{{ description }}</p>
+      <div class="details">
+        <template v-if="tags && tags.length">
+          <h6 v-for="tag in tags" :key="'tag_' + tag">{{ tag }}</h6>
+        </template>
+        <div v-if="ingredients && ingredients.length">
+          <h3>Ingredients:</h3>
+          <h6>{{ ingredients.toString() }}</h6>
+        </div>
+        <div v-if="allergens && allergens.length">
+          <h3>Allergens:</h3>
+          <h6 v-for="allergen in allergens" :key="'allergen_' + allergen">{{ allergen }}</h6>
         </div>
       </div>
-      <div v-if="sugar && sugar.length">
-        <h5>Sugar Level:</h5>
-        <div v-for="sugarLevel in sugar" :key="'sugar_' + sugarLevel" class="sugarButtons buttons">
-          <button @click="tempSugar = sugarLevel">{{ sugarLevel }}</button>
-        </div>
-      </div>
-      <div v-if="ice && ice.length">
-        <h5>Ice Level:</h5>
-        <div v-for="icePercentage in ice" :key="'ice_' + icePercentage" class="iceButtons buttons">
-          <button @click="tempIce = icePercentage">{{ icePercentage }}</button>
-        </div>
-      </div>
-    </div>
 
-    <div class="add-to-cart">
-      <button
-        @click="
-          addToCart({
-            name: name,
-            cost: cost,
-            calories: calories,
-            sizes: tempSize,
-            sugar: tempSugar,
-            ice: tempIce,
-            allergens: allergens
-          })
-          ">Add to Cart</button>
+      <div class="separator1"></div>
+
+      <div class="options">
+        <div v-if="sizes && sizes.length" class="size-container">
+          <h5>Sizes:</h5>
+          <div v-for="size in sizes" :key="'size_' + size" class="sizeButtons buttons">
+            <button @click="tempSize = size">{{ size }}</button>
+          </div>
+        </div>
+        <div v-if="sugar && sugar.length">
+          <h5>Sugar Level:</h5>
+          <div
+            v-for="sugarLevel in sugar"
+            :key="'sugar_' + sugarLevel"
+            class="sugarButtons buttons"
+          >
+            <button @click="tempSugar = sugarLevel">{{ sugarLevel }}</button>
+          </div>
+        </div>
+        <div v-if="ice && ice.length">
+          <h5>Ice Level:</h5>
+          <div
+            v-for="icePercentage in ice"
+            :key="'ice_' + icePercentage"
+            class="iceButtons buttons"
+          >
+            <button @click="tempIce = icePercentage">{{ icePercentage }}</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="add-to-cart">
+        <button
+          @click="
+            addToCart({
+              name: name,
+              cost: cost,
+              calories: calories,
+              size: tempSize,
+              sugar: tempSugar,
+              ice: tempIce,
+              allergens: allergens
+            })
+          "
+        >
+          Add to Cart
+        </button>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <style scoped>
@@ -112,7 +131,7 @@ function addToCart(data) {
   margin-top: 16px;
   background-color: blanchedalmond;
   color: black;
-  width:300px;
+  width: 300px;
 }
 
 .card h3 {
@@ -148,7 +167,7 @@ p {
   border-radius: 10px;
   color: black;
   background-color: pink;
-  border-color:white;
+  border-color: white;
   font-weight: bold;
   text-align: center;
 }
@@ -166,8 +185,8 @@ button:hover {
 
 .separator1 {
   background-color: gray;
-  width: 100%; 
-  height: 3px; 
+  width: 100%;
+  height: 3px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -176,7 +195,7 @@ button:hover {
 
 .add-to-cart {
   margin-top: auto;
-  align-self: flex-start; 
+  align-self: flex-start;
   padding: 7px;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -193,6 +212,4 @@ button:hover {
   justify-content: center;
   padding-right: 30px;
 }
-
 </style>
-
