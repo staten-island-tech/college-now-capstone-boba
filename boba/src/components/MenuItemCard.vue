@@ -44,8 +44,8 @@ function addToCart(data) {
 </script>
 
 <template>
-  <div class="container">
-  <div class="card">
+    <div class="card-container">
+      <div class="card">
     <h3>{{ name }}</h3>
     <p>{{ description }}</p>
     <div class="details">
@@ -185,6 +185,12 @@ button:hover {
   background-color: white;
   font-weight: bold;
   text-align: center;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  padding-right: 30px;
 }
 
 </style>
