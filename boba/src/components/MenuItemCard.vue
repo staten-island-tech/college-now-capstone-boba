@@ -112,6 +112,7 @@ function addToCart(data) {
   margin-top: 16px;
   background-color: blanchedalmond;
   color: black;
+  width:300px;
 }
 
 .card h3 {

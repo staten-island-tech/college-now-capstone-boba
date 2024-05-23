@@ -195,7 +195,6 @@ input {
   color: black;
   border: 2px solid pink;
   border-radius: 10px;
-  color: black;
 }
 
 button {
