@@ -1,3 +1,4 @@
+Register 
 <script setup> 
 import { userStore } from '../stores/user.js'
 import { ref } from 'vue'
@@ -61,6 +62,7 @@ button {
   border: 2px solid pink;
   border-radius: 10px;
   color: black;
+  background-color: white;
   font-weight: bold;
 }
 
@@ -74,6 +76,7 @@ html, body {
   height: 100%;
   background-image: url(${backgroundImageUrl});
   background-size: cover;
+  display: center;
 }
 
 .container {
@@ -82,9 +85,12 @@ html, body {
   width: 800px;
   padding: 30px;
   border-radius: 10px;
+  margin: 10px;
+  justify-content: center;
 }
 
 .background{
   color: brown;
 }
 </style>
+
