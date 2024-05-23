@@ -51,5 +51,5 @@ export const orderStore = defineStore('order', () => {
     }
   }
 
-  return { orderItems, $createOrder }
+  return { orderItems, $createOrder, $getOrders }
 })
