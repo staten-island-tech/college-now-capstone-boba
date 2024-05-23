@@ -121,7 +121,7 @@ exports.updateOrder = async (req, res) => {
   }
 };
 
-exports.deleteOrder = async (req, res) => {
+exports.deleteOrder = async (res) => {
   try {
     const order = await orderSchema.findByIdAndDelete(req.params.id);
     if (!order) {
@@ -133,9 +133,11 @@ exports.deleteOrder = async (req, res) => {
   }
 };
 
-exports.getOrder = async (res) => {
+exports.getOrder = async (req, res) => {
   try {
-    const order = await orderSchema.find({});
+    const order = await orderSchema
+      .find({ userToken: req.body.userToken })
+      .exec();
     res.json(order);
   } catch (error) {
     console.log(error);

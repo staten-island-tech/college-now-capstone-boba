@@ -39,6 +39,27 @@ export const orderStore = defineStore('order', () => {
       console.log(userSt.access_token)
       const response = await fetch(`http://localhost:3000/order/get`, {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userToken: userSt.access_token
+        })
+      })
+        .then((res) => res.json())
+        .then(async (data) => {
+          console.log(data)
+          orders.value = data
+        })
+      //router.push('')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const $deleteOrder = async function (id) {
+    try {
+      console.log(userSt.access_token)
+      const response = await fetch(`http://localhost:3000/order/delete/${id}`, {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' }
       })
         .then((res) => res.json())
@@ -51,5 +72,23 @@ export const orderStore = defineStore('order', () => {
     }
   }
 
-  return { orderItems, $createOrder, $getOrders }
+  const $updateOrder = async function (id) {
+    try {
+      console.log(userSt.access_token)
+      const response = await fetch(`http://localhost:3000/order/update/${id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ menuItems: orderItems.value, cost: total.value })
+      })
+        .then((res) => res.json())
+        .then(async (data) => {
+          console.log(data)
+        })
+      //router.push('')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  return { orderItems, $createOrder, $getOrders, $deleteOrder, $updateOrder }
 })

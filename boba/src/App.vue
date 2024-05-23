@@ -1,19 +1,27 @@
-App.vue 
+App.vue
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { userStore } from './stores/user'
+let userSt = userStore()
 </script>
 
 <template>
   <header>
     <h1>Welcome to Yum Boba!</h1>
     <div class="imgboba">
-    <img src = "https://i.pinimg.com/originals/1c/5b/03/1c5b03fcd3e6ad9d1c46508cc282a3ad.png" alt="Boba Image">
+      <img
+        src="https://i.pinimg.com/originals/1c/5b/03/1c5b03fcd3e6ad9d1c46508cc282a3ad.png"
+        alt="Boba Image"
+      />
     </div>
     <div class="separator"></div>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Register</RouterLink>
+        <RouterLink v-if="!userSt.access_token" to="/">Register</RouterLink>
+        <RouterLink v-if="!userSt.access_token" to="/login">Login</RouterLink>
         <RouterLink to="/Menu">Menu</RouterLink>
+        <RouterLink to="/cart">Cart</RouterLink>
+        <RouterLink to="/orders">Orders</RouterLink>
       </nav>
     </div>
   </header>
@@ -21,9 +29,9 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style scoped>
-
 body {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
+    Verdana, sans-serif;
   margin: 0;
 }
 
@@ -79,8 +87,8 @@ h1 {
 
 .separator {
   background-color: #441151;
-  width: 100%; 
-  height: 3px; 
+  width: 100%;
+  height: 3px;
   margin-left: 10px;
   flex-direction: column;
   justify-content: center;
@@ -96,6 +104,4 @@ h1 {
   width: 160px;
   height: 240px;
 }
-
 </style>
-
