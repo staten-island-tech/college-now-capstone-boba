@@ -1,5 +1,3 @@
-MenuitemCard
-
 <script setup>
 import { orderStore } from '@/stores/orders'
 import { ref } from 'vue'
