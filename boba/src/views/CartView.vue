@@ -16,10 +16,10 @@ onMounted(() => {
 
 function placeOrder() {
   console.log(userSt.access_token)
-  if (cost.value > 0) {
-    orderSt.$createOrder(cost)
-  } else if (userSt.access_token == undefined) {
+  if (userSt.access_token == undefined) {
     notLoggedIn.value = true
+  } else if (cost.value > 0) {
+    orderSt.$createOrder(cost)
   } else {
     noItems.value = true
   }
@@ -28,7 +28,7 @@ function placeOrder() {
 
 <template>
   <div>
-    <div v-if="noItems"></div>
+    <div v-if="noItems">Place items into your cart!</div>
     <div v-if="!noItems">
       <h1>Items:</h1>
       <div class="container">
@@ -41,7 +41,7 @@ function placeOrder() {
         </div>
       </div>
       <h4>Total: ${{ cost }}</h4>
-      <button @click="orderSt.$createOrder(cost)">Place your order here</button>
+      <button @click="placeOrder()">Place your order here</button>
     </div>
     <div v-if="notLoggedIn">Please login or register before you order!</div>
   </div>
