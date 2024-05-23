@@ -41,7 +41,7 @@ function placeOrder() {
         </div>
       </div>
       <h4>Total: ${{ cost }}</h4>
-      <button @click="placeOrder()">Place your order here</button>
+      <button class="place_order" @click="placeOrder()">Place your order here</button>
     </div>
     <div v-if="notLoggedIn">Please login or register before you order!</div>
   </div>
@@ -62,5 +62,17 @@ h1 {
 
 .card {
   margin: 10px;
+}
+
+.place_order {
+  border: 2px solid pink;
+  padding: 10px;
+  display: center;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: pink;
+
 }
 </style>

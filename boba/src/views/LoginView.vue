@@ -31,7 +31,7 @@ function login() {
     />
     <h3 v-if="incompleteField">Please make sure you filled out all fields!</h3>
     <h3 v-if="userStore().loginError">Incorrect username or password!</h3>
-    <button @click="login()">Submit:</button>
+    <button class="login" @click="login()">Submit:</button>
   </div>
 </template>
 
@@ -73,5 +73,11 @@ button {
 
 button:hover {
   background-color: pink;
+
+}
+
+.login {
+  border: 2px solid pink;
+  padding: 10px;
 }
 </style>
