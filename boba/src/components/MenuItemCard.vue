@@ -53,53 +53,54 @@ function addToCart(data) {
 
 <template>
   <div class="card-container">
-    <div class="card">
-      <h3>{{ name }}</h3>
-      <p>{{ description }}</p>
-      <div class="details">
-        <template v-if="tags && tags.length">
-          <h6 v-for="tag in tags" :key="'tag_' + tag">{{ tag }}</h6>
-        </template>
-        <div v-if="ingredients && ingredients.length">
-          <h3>Ingredients:</h3>
-          <h6>{{ ingredients.toString() }}</h6>
+    <div class="wrapper">
+      <div class="card">
+        <h3>{{ name }}</h3>
+        <p>{{ description }}</p>
+        <div class="details">
+          <template v-if="tags && tags.length">
+            <h6 v-for="tag in tags" :key="'tag_' + tag">{{ tag }}</h6>
+          </template>
+          <div v-if="ingredients && ingredients.length">
+            <h3>Ingredients:</h3>
+            <h6>{{ ingredients.toString() }}</h6>
+          </div>
+          <div v-if="allergens && allergens.length">
+            <h3>Allergens:</h3>
+            <h6 v-for="allergen in allergens" :key="'allergen_' + allergen">{{ allergen }}</h6>
+          </div>
         </div>
-        <div v-if="allergens && allergens.length">
-          <h3>Allergens:</h3>
-          <h6 v-for="allergen in allergens" :key="'allergen_' + allergen">{{ allergen }}</h6>
+
+        <div class="separator1"></div>
+
+        <div class="options">
+          <div v-if="sizes && sizes.length" class="size-container">
+            <h5>Sizes:</h5>
+            <select v-model="tempSize">
+              <option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
+            </select>
+          </div>
+          <div v-if="sugar && sugar.length">
+            <h5>Sugar Level:</h5>
+            <select v-model="tempSugar">
+              <option v-for="sugarLevel in sugar" :key="sugarLevel" :value="sugarLevel">
+                {{ sugarLevel }}
+              </option>
+            </select>
+          </div>
+          <div v-if="ice && ice.length">
+            <h5>Ice Level:</h5>
+            <select v-model="tempIce">
+              <option v-for="iceLevel in ice" :key="iceLevel" :value="iceLevel">
+                {{ iceLevel }}
+              </option>
+            </select>
+          </div>
         </div>
       </div>
-
-      <div class="separator1"></div>
-
-      <div class="options">
-        <div v-if="sizes && sizes.length" class="size-container">
-          <h5>Sizes:</h5>
-          <select v-model="tempSize">
-            <option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
-          </select>
-        </div>
-        <div v-if="sugar && sugar.length">
-          <h5>Sugar Level:</h5>
-          <select v-model="tempSugar">
-            <option v-for="sugarLevel in sugar" :key="sugarLevel" :value="sugarLevel">
-              {{ sugarLevel }}
-            </option>
-          </select>
-        </div>
-        <div v-if="ice && ice.length">
-          <h5>Ice Level:</h5>
-          <select v-model="tempIce">
-            <option v-for="iceLevel in ice" :key="iceLevel" :value="iceLevel">
-              {{ iceLevel }}
-            </option>
-          </select>
-        </div>
-      </div>
-
       <div class="add-to-cart">
         <button
-          @click="
+          @click.stop="
             addToCart({
               name: name,
               cost: cost,

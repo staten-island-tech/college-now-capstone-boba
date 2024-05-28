@@ -127,7 +127,7 @@ exports.deleteOrder = async (req, res) => {
     if (!order) {
       res.status(404).send();
     }
-    res.send(`${order} was deleted from the DB`);
+    res.json(`${order} was deleted from the DB`);
   } catch (error) {
     console.log(error);
   }

@@ -55,15 +55,15 @@ export const orderStore = defineStore('order', () => {
     }
   }
 
-  const $deleteOrder = async function (id) {
+  const $deleteOrder = async function (itemId) {
     try {
       console.log(userSt.access_token)
-      console.log(id)
+      console.log(itemId)
       const response = await fetch(`http://localhost:3000/order/delete`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          id: id
+          id: itemId
         })
       })
         .then((res) => res.json())
