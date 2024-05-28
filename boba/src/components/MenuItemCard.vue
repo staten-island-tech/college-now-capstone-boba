@@ -75,29 +75,25 @@ function addToCart(data) {
       <div class="options">
         <div v-if="sizes && sizes.length" class="size-container">
           <h5>Sizes:</h5>
-          <div v-for="size in sizes" :key="'size_' + size" class="sizeButtons buttons">
-            <button @click="tempSize = size">{{ size }}</button>
-          </div>
+          <select v-model="tempSize">
+            <option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
+          </select>
         </div>
         <div v-if="sugar && sugar.length">
           <h5>Sugar Level:</h5>
-          <div
-            v-for="sugarLevel in sugar"
-            :key="'sugar_' + sugarLevel"
-            class="sugarButtons buttons"
-          >
-            <button @click="tempSugar = sugarLevel">{{ sugarLevel }}</button>
-          </div>
+          <select v-model="tempSugar">
+            <option v-for="sugarLevel in sugar" :key="sugarLevel" :value="sugarLevel">
+              {{ sugarLevel }}
+            </option>
+          </select>
         </div>
         <div v-if="ice && ice.length">
           <h5>Ice Level:</h5>
-          <div
-            v-for="icePercentage in ice"
-            :key="'ice_' + icePercentage"
-            class="iceButtons buttons"
-          >
-            <button @click="tempIce = icePercentage">{{ icePercentage }}</button>
-          </div>
+          <select v-model="tempIce">
+            <option v-for="iceLevel in ice" :key="iceLevel" :value="iceLevel">
+              {{ iceLevel }}
+            </option>
+          </select>
         </div>
       </div>
 
