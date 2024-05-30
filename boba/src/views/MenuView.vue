@@ -30,7 +30,6 @@ onMounted(() => {
         :ice="item.icePercentage"
         :ingredients="item.ingredients"
         :allergens="item.allergens"
-        @click="orderSt.orderItems.push(item)"
       />
     </div>
   </div>
