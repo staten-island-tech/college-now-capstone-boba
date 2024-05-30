@@ -21,7 +21,7 @@ export const orderStore = defineStore('order', () => {
           userToken: userSt.access_token,
           currentOrder: true,
           menuItems: orderItems.value,
-          cost: total
+          cost: total.value
         })
       })
         .then((res) => res.json())
